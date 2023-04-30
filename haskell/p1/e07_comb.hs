@@ -1,3 +1,4 @@
+--Combinatory version
 combination::Int->Int->Int
 combination m n
   |m >= n =  (fact m) `div` (fact (m - n) * fact n)
