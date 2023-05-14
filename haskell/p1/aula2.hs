@@ -40,16 +40,20 @@ maiorDaLista (x:y)
   |x > maiorDaLista(y) = x
   |otherwise = maiorDaLista(y)
 
--- ??
-ordenaLista::[Int]->[Int]
-ordenaLista [x] = [x]
-ordenaLista (x:y:z)
-  |x < y = ordenaLista(x:y:z)
-  |otherwise = ordenaLista(y:x:z)
-
-
 insereOrdenado::Int->[Int]->[Int]
 insereOrdenado x [] = [x]
 insereOrdenado x (a:b)
   |x < a = x:a:b
   |otherwise = [a] ++ insereOrdenado x b 
+
+
+ordenaLista::[Int]->[Int]
+ordenaLista [] = []
+ordenaLista (a:b) = insereOrdenado a (ordenaLista b)
+
+
+insereListaOrdenado::[Int]->[[Int]]->[[Int]]
+insereListaOrdenado x [] = []
+insereListaOrdenado x (a:b)
+  |x<a = x:a:b
+  |otherwise = [a] ++ insereListaOrdenado x b
