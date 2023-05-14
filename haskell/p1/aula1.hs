@@ -5,11 +5,11 @@ periodo = 7
 vendas::Int->Int
 vendas 0 = 0
 vendas 1 = 41
-vendas 2 = 72
+vendas 2 = 12
 vendas 3 = 48
-vendas 4 = 0
+vendas 4 = 21
 vendas 5 = 91
-vendas 6 = 55
+vendas 6 = 54
 vendas 7 = 30
 
 
@@ -74,3 +74,35 @@ maiorVenda2 0 = 0
 maiorVenda2 x
   |x<=periodo = maior (vendas x) (maiorVenda2(x-1))
   |otherwise = 0
+
+
+--14 a
+howManyLess::Int->Int->Int->Int
+howManyLess 0 _ _ = 0
+howManyLess x p1 p2
+  |p2 < p1 || p2 > periodo = 0
+  |vendas p2 < x = howManyLess x p1 (p2-1) + 1
+  |otherwise = howManyLess x p1 (p2-1)
+
+
+noZeroInPeriod::Int->Bool
+noZeroInPeriod 0 = True
+noZeroInPeriod x
+  |vendas x == 0 = False
+  |otherwise = noZeroInPeriod(x-1)
+
+
+zeroList::Int->[Int]
+zeroList 0 = []
+zeroList x
+  |vendas x == 0 = zeroList(x-1) ++ [x]
+  |otherwise = zeroList(x-1)
+
+
+vendasAbaixo::Int->Int->[Int]
+vendasAbaixo _ 0 = []
+vendasAbaixo x p
+  |vendas p < x = vendasAbaixo x (p-1) ++ [p]
+  |otherwise = vendasAbaixo x (p-1)
+
+

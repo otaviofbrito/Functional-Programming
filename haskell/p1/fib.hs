@@ -7,5 +7,3 @@ fib n
   |otherwise = 0
 
 
-exOr False x = x
-exOr True x = not x

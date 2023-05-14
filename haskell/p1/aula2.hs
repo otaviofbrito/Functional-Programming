@@ -35,7 +35,7 @@ listaDiaVendas x = (x:[vendas x]) : listaDiaVendas(x-1)
 
 
 maiorDaLista::[Int]->Int
-maiorDaLista [] = 0
+maiorDaLista [x] = x
 maiorDaLista (x:y)
   |x > maiorDaLista(y) = x
   |otherwise = maiorDaLista(y)
@@ -43,7 +43,7 @@ maiorDaLista (x:y)
 insereOrdenado::Int->[Int]->[Int]
 insereOrdenado x [] = [x]
 insereOrdenado x (a:b)
-  |x < a = x:a:b
+  |x <= a = x:(a:b)
   |otherwise = [a] ++ insereOrdenado x b 
 
 
@@ -53,7 +53,40 @@ ordenaLista (a:b) = insereOrdenado a (ordenaLista b)
 
 
 insereListaOrdenado::[Int]->[[Int]]->[[Int]]
-insereListaOrdenado x [] = []
+insereListaOrdenado x [] = [x]
 insereListaOrdenado x (a:b)
-  |x<a = x:a:b
+  |x <= a = x:(a:b)
   |otherwise = [a] ++ insereListaOrdenado x b
+
+ordenaListaLista::[[Int]]->[[Int]]
+ordenaListaLista [] = []
+ordenaListaLista (a:b) = insereListaOrdenado a (ordenaListaLista b)
+
+
+
+listaDobro::[Int]->[Int]
+listaDobro [] = []
+listaDobro (x:y) = [x*2] ++ listaDobro y
+
+
+membro::Int->[Int]->Bool
+membro _ [] = False
+membro x (a:b)
+  |x == a = True
+  |otherwise = membro x b
+
+membro2::Int->[Int]->Bool
+membro2 _ [] = False
+membro2 x (a:b) = (a==x) || membro x b
+
+
+isDigit::Char->Bool
+isDigit c = c >= '0' && c <= '9' 
+
+digitos::String->String
+digitos [] = []
+digitos (a:b)
+  |isDigit a = [a] ++ digitos b
+  |otherwise = digitos b
+
+
