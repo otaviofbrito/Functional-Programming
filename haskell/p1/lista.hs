@@ -1,3 +1,5 @@
+import Data.Char
+
 --1
 f1::Double->Double
 f1 x
@@ -159,3 +161,29 @@ separa (a:b)
 
 --24
 
+converte::[Int]->String
+converte [] = []
+converte (x:b) = chr(x+64):converte b
+
+
+--26
+contChar::Char->[Char]->Int
+contChar _ [] = 0
+contChar c (a:b)
+  |c == a = contChar c b + 1
+  |otherwise = contChar c b
+
+
+--27
+
+purifica::[Int]->[Int]
+purifica [x] = [x]
+purifica (a:b:c)
+  |a==b = purifica (b:c)
+  |otherwise = a:purifica(b:c)
+
+
+--28
+prolifera::[Int]->[Int]
+prolifera [] = []
+prolifera (a:b) = a:prolifera b
