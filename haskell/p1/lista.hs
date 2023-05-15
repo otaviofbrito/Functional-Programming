@@ -183,7 +183,26 @@ purifica (a:b:c)
   |otherwise = a:purifica(b:c)
 
 
+
 --28
+
+multLista::Int->[Int]->[Int]
+multLista 0 _ = []
+multLista x [] = []
+multLista x y = y ++ multLista (x-1) y
+
 prolifera::[Int]->[Int]
 prolifera [] = []
-prolifera (a:b) = a:prolifera b
+prolifera (a:b) = multLista a [a] ++ prolifera b
+
+
+--29
+
+multString::Int->[Char]->[Char]
+multString 0 _ = []
+multString x [] = []
+multString x y = y ++ multString (x-1) y
+
+proliferaChar::[Char]->[Char]
+proliferaChar [] = []
+proliferaChar (a:b) = multString (ord a - 64) [a] ++ proliferaChar b
