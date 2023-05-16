@@ -1,3 +1,5 @@
+import Data.Char
+
 somaTupla::(Int,Int)->Int
 somaTupla (x,y) = x + y
 
@@ -58,3 +60,37 @@ listaTupla (a:b) (c:d) = (a,c):listaTupla b d
 
 
 
+filtraNum::[Char]->[Char]
+filtraNum [] = []
+filtraNum (x:y)
+  |isDigit x = filtraNum y
+  |otherwise = x:filtraNum y
+
+filtraChar::[Char]->[Char]
+filtraChar [] = []
+filtraChar (x:y)
+  |isDigit x = x:filtraChar y
+  |otherwise = filtraChar y
+
+
+filtraLista::[(Bool,String)]->[String]
+filtraLista [] = []
+filtraLista ((b,s):c)
+  |b = filtraNum s : filtraLista c
+  |otherwise = filtraChar s : filtraLista c
+
+
+
+max2::Int->Int->Int
+max2 a b
+  |a>b = a
+  |otherwise = b
+
+min2::Int->Int->Int
+min2 a b
+  |a<b = a
+  |otherwise = b
+
+
+min3max::Int->Int->Int->(Int,Int)
+min3max a b c = (max2 c (max2 a b), min2 c (min2 a b))
