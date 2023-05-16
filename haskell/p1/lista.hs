@@ -123,6 +123,23 @@ funny2 x y z
   |otherwise = True
 
 
+--17
+dist = ord 'A' - ord 'a' 
+
+caps::Char->Char
+caps x
+  |isLower x = chr ((ord x) + dist)                
+  |otherwise = x
+
+--18
+distDigit = ord '0'
+
+charToNum::Char->Int
+charToNum x
+  |isDigit x = ord x - distDigit 
+  |otherwise = -1
+
+
 --19
 duplicarString::String->Int->String
 duplicarString _ 0 = []
