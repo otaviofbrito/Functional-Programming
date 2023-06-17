@@ -13,7 +13,6 @@ vendas 6 = 54
 vendas 7 = 30
 
 
-
 diaCertaVenda::Int->Int->Int
 diaCertaVenda _ 0 = vendas 0
 diaCertaVenda x y
@@ -68,6 +67,7 @@ maior::Int->Int->Int
 maior x y
   |x > y = x
   |otherwise = y
+
 
 maiorVenda2::Int->Int
 maiorVenda2 0 = 0
