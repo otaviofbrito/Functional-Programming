@@ -21,6 +21,12 @@ produtoCartesiano2 l1 l2= [(x,y) | x <- l1, y <- l2]
 relacaoMaior::[Int]->[Int]->[(Int,Int)]
 relacaoMaior l1 l2 = [(x,y) | x <- l1, y <- l2 , x>y]
 
+relacaoMaior2::[(Int,Int)]->[(Int,Int)]
+relacaoMaior2 [] = []
+relacaoMaior2 ((a,b):c)
+  |a > b = (a,b):relacaoMaior2 c
+  |otherwise = relacaoMaior2 c
+
 
 identidade::[Int]->[Int]->[(Int,Int)]
 identidade l1 l2 = [(x,y) | x <- l1, y<- l2, x==y]
@@ -35,6 +41,11 @@ qtdX x (a:b)
 func1::[(Int,[Int])]->[(Int,Int)]
 func1 l = [(x,qtdX x y) | (x,y) <- l]
 
+
+zip1::[Int]->[Int]->[(Int,Int)]
+zip1 [] _ = []
+zip1 _ [] = []
+zip1 (a:b) (c:d) = (a,c):zip1 b d
 
 par::Int->Bool
 par x = x `mod` 2 == 0
@@ -70,3 +81,4 @@ checkPos (x,c,(a:b))
 func4::[(Int,Char,String)]->([(Int,Char,String)], [(Int,Char,String)])
 func4 l = ([x| x <- l, checkPos x], [x | x <- l, not(checkPos x)])
  
+
