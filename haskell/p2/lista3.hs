@@ -44,5 +44,26 @@ gen1::[Int]->[Int]->[(Int,Int)]
 gen1 l1 l2 = [(x,y) | x <- l1,  y <- l2]
 
 --6
+find1::(Eq a)=>a->[(a,Int)]->[Int]
+find1 c l = [y | (x,y) <- l , x == c]
 
+--7
+
+scalarProduct::[Int]->[Int]->Int
+scalarProduct l1 l2 = sqSum[x*y| (x,y) <- zip l1 l2]
+
+
+--8
+infixr 8 &!
+
+(&!)::Int->Int->Int
+_ &! 0 = 1
+x &! y = x * (&!) x (y-1)
+
+--9
+lcFunc::(Int->Int)->(Int->Bool)->[Int]->[Int]
+lcFunc op p l = [op x | x <-l , p x ]
+
+fmFunc::(Int->Int)->(Int->Bool)->[Int]->[Int]
+fmFunc op p l = map op (filter p l)
 
